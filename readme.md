@@ -1,4 +1,6 @@
-# Minimoon
+<center>
+<img src="./.github/logo.png" />
+</center>
 
 #### A simple, clean and declarative Node.js client for working with http communication.
 
@@ -21,8 +23,8 @@
 - [x] makeServer
 - [x] makeRouter
 
-
 ## Test
+
 ```bash
 # install dependencies
 npm install
