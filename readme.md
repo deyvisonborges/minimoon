@@ -1,6 +1,7 @@
-<center>
-<img src="./.github/logo.png" />
-</center>
+ <p align="center">
+  <img src="./.github/logo.png" /> 
+ </p>
+
 
 #### A simple, clean and declarative Node.js server for working with http communication.
 
