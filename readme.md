@@ -2,7 +2,7 @@
 <img src="./.github/logo.png" />
 </center>
 
-#### A simple, clean and declarative Node.js client for working with http communication.
+#### A simple, clean and declarative Node.js server for working with http communication.
 
 > This work is in progress...
 
