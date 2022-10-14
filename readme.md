@@ -12,8 +12,13 @@
 ### To Do
 
 - [ ] add logic to validate disallowed methods
-- [ ] create pure validations for the request body equal to Joi
-- [ ] do makeHeaders
+- [ ] create makeHeaders
+- [ ] create CORS generation tool
+- [ ] create tool to generate middlewares
+- [ ] create validation tool equal Joi
+- [ ] create makeTestServer and make it work like SuperTest
+- [ ] create project base with examples
+- [ ] integrate with Prisma
 
 ### In progress
 
