@@ -10,10 +10,19 @@ export function makeServer(server: MinimoonServerProps) {
 
   return http
     .createServer((req: MinimoonRequestProps, res: MinimoonResponseProps) => {
-      res.writeHead(200, { "Content-Type": "application/json" });
-
       const requestedUrl = url.parse(req.url!).pathname;
       const requestedMethod = req.method;
+
+      if (server.headers) {
+        for (const header in server.headers) {
+          res.setHeader(
+            server.headers[header].name,
+            server.headers[header].mime
+          );
+        }
+      } else {
+        res.setHeader("Content-Type", "text/plain");
+      }
 
       for (const route in server.routes) {
         if (requestedUrl === server.routes[route].path) {
@@ -28,7 +37,6 @@ export function makeServer(server: MinimoonServerProps) {
           res.write("Path Not Found");
         }
       }
-
       res.end();
     })
     .listen(server.port);
