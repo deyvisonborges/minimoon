@@ -18,3 +18,6 @@ export class MinimoonHeader {
     return this.headers;
   }
 }
+
+
+const myHeaders = new Headers();
