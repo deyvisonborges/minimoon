@@ -1,18 +1,17 @@
-const { Minimoon } = require("./dist");
+const {Minimoon} = require("./dist");
 
-const router = Minimoon.makeRouter([
-  {
+const router = Minimoon.makeRouter([{
     path: "/",
     method: "GET",
     controller: (req, res) => {
-      return {
-        name: "deyvison",
-      };
-    },
-  },
-]);
+      return 'opa jia'
+    }
+  },]);
 
-Minimoon.makeServer({
-  port: 4000,
-  routes: router,
-});
+(() => {
+  try {
+    Minimoon.makeServer({port: 4000, routes: router});
+  } catch (err) {
+    console.log(err)
+  }
+})()

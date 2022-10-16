@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -d",
+    "dev": "rm -rf dist && npm run build && npm run test",
     "test": "npm run build && node example.js"
   },
   "keywords": [],
