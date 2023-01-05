@@ -25,9 +25,10 @@ export function makeServer(server: MinimoonServerProps) {
       }
 
       for (const route in server.routes) {
-        if (requestedUrl === server.routes[route].path) {
-          if (requestedMethod === server.routes[route].method) {
-            const result = server.routes[route].controller();
+        if (requestedUrl === server.routes[route].path) { // rota
+          if (requestedMethod === server.routes[route].method) { // metodo http da rota
+            const result = server.routes[route].controller(); // controller
+            console.log(res.getHeaderNames)
             res.write(JSON.stringify(result));
           } else {
             res.writeHead(405, "Method Not Allowed");
