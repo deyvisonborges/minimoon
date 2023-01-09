@@ -10,10 +10,9 @@ const router = Minimoon.makeRouter([{
 
 (() => {
   try {
-    Minimoon.makeServer({port: 4000, routes: router, headers: {
-      "Content-Type": 'multipart/form-data'
-    }});
+    Minimoon.makeServer({port: 4000, routes: router, statusCode: 200 });
   } catch (err) {
     console.log(err)
   }
 })()
+

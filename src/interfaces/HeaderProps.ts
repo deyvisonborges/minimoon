@@ -20,7 +20,7 @@ type ContentTypeValues =
 | "multipart/form-data"
 | "multipart/byteranges"
 | "message/rfc822"
-| "message/partial";
+| "message/partial"
 
 // TODO: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 //  | 'image/*' | 'text/html' | 'application/xhtml+xml' | 'application/xml;q=0.9' | 'image/webp'

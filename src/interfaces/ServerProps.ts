@@ -4,5 +4,6 @@ import { MinimoonRouteProps } from "./HandlerProps";
 export type MinimoonServerProps = {
   port: number;
   routes: MinimoonRouteProps[];
-  headers: MinimoonHeaderProps
+  headers: MinimoonHeaderProps;
+  statusCode: number
 };

@@ -1,3 +1,4 @@
+import { ReadStream } from "fs";
 import { MinimoonRequestProps } from "./RequestProps";
 import { MinimoonResponseProps } from "./ResponseProps";
 
@@ -7,6 +8,6 @@ export type MinimoonRouteProps = {
   handler: (
     req?: MinimoonRequestProps,
     res?: MinimoonResponseProps
-  ) => string | number | string[] | number[] | Record<any, any>;
+  ) => string | object | ReadStream;
   params?: string[];
 };

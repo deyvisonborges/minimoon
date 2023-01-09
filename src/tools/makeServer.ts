@@ -4,6 +4,8 @@ import url from "url";
 import { MinimoonRequestProps } from "../interfaces/RequestProps";
 import { MinimoonResponseProps } from "../interfaces/ResponseProps";
 import { MinimoonServerProps } from "../interfaces/ServerProps";
+import { makeResponse } from "./makeResponse";
+import { MimeTypeProps } from "../interfaces/MimeTypeProps";
 
 export function makeServer(server: MinimoonServerProps) {
   console.log(`\x1b[33m server running in port ${server.port} \x1b[0m`);
@@ -27,19 +29,24 @@ export function makeServer(server: MinimoonServerProps) {
         res.setHeader("Content-Type", "text/plain");
       }
 
-      console.log(res.getHeaders())
+
+      const contentType = res.getHeader('Content-Type') as MimeTypeProps
+      console.log(contentType)
 
       /**
        * Handlers definitions
        */
-
       for (const route in server.routes) {
-        if (requestedUrl === server.routes[route].path) {
-          if (requestedMethod === server.routes[route].method) {
-            const result = server.routes[route].handler();
+        if (requestedUrl === server.routes[route].path) { // rota
+          if (requestedMethod === server.routes[route].method) { // metodo http
+            const data = server.routes[route].handler(); // handle
 
-            console.log(result)
-            res.write(JSON.stringify(result));
+            return makeResponse({
+              data: data,
+              previousResponse: res,
+              statusCode: server.statusCode,
+              type: contentType
+            })
           } else {
             res.writeHead(405, "Method Not Allowed");
           }
