@@ -1,7 +1,7 @@
-import { makeRouter } from "./tools/makeRouter";
+import { makeHandlers } from './tools/makeHandlers'
 import { makeServer } from "./tools/makeServer";
 
 export const Minimoon = {
-  makeRouter,
+  makeHandlers,
   makeServer,
 } as const;

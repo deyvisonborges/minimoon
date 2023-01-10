@@ -1,7 +1,8 @@
 import fs from "fs";
-import { Server, ServerResponse } from "http";
+import { ServerResponse } from "http";
 import { MimeTypeProps } from "../interfaces/MimeTypeProps";
 import { MIME_TYPES } from "../constants/mimeTypes";
+import { HttpStatus } from "../constants/httpStatus";
 
 interface ResponseProps {
   statusCode: number;
@@ -10,30 +11,30 @@ interface ResponseProps {
   previousResponse: ServerResponse;
 }
 
-const tmpHttpStatusResponse: Record<number, string> = {
-  200: "Created",
-  400: "Bad Request",
-};
+export function makeResponse() {
+  
+  function sendData(props: ResponseProps) {
+    const tmpRes = {} as ResponseProps;
+    const res: ServerResponse = props.previousResponse;
 
-export function makeResponse({
-  statusCode,
-  type,
-  data,
-  previousResponse,
-}: ResponseProps) {
-  const tmpRes = {} as ResponseProps;
-  let res: ServerResponse = previousResponse;
+    if (typeof props.data === "string") {
+      tmpRes.data = props.data;
+      tmpRes.type = MIME_TYPES.html;
+    } else if (typeof props.data === "object") {
+      tmpRes.data = JSON.stringify(props.data);
+      tmpRes.type = MIME_TYPES.json;
+    }
 
-  if (typeof data === "string") {
-    tmpRes.data = data;
-    tmpRes.type = MIME_TYPES.html;
-  } else if (typeof data === "object") {
-    tmpRes.data = JSON.stringify(data);
-    tmpRes.type = MIME_TYPES.json;
+    res.writeHead(props.statusCode, HttpStatus[props.statusCode].message);
+    res.write(tmpRes.data);
+    res.end();
   }
 
-  res.setHeader("Content-Type", tmpRes.type);
-  res.writeHead(statusCode, tmpHttpStatusResponse[statusCode] as string);
-  res.write(tmpRes.data);
-  res.end();
+  // async function sendFile(path: string) {
+  //   const stream = await fs.createReadStream(path)
+  // }
+
+  return {
+    sendData
+  }
 }
