@@ -1,5 +1,4 @@
 import { MinimoonHandlerProps } from "../interfaces/HandlerProps";
-import { makeResponse } from "./makeResponse";
 
 export function makeHandlers(handlers: MinimoonHandlerProps[]) {
   return handlers;

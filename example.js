@@ -5,7 +5,6 @@ var router = dist_1.Minimoon.makeHandlers([
     {
         path: '/',
         method: 'GET',
-        statusCode: 200,
         handler: function () {
             return 'ola mundo';
         }

@@ -1,7 +1,7 @@
 import { HttpStatusProps } from "../interfaces/HttpStatusProps";
 
 const HttpStatus: Record<
-  any,
+  string,
   {
     statusCode: number;
     message: HttpStatusProps;

@@ -1,7 +1,5 @@
-import http from "http";
+import http, { IncomingMessage, ServerResponse } from "http";
 
-import { MinimoonRequestProps } from "../interfaces/RequestProps";
-import { MinimoonResponseProps } from "../interfaces/ResponseProps";
 import { MinimoonServerProps } from "../interfaces/ServerProps";
 import { mountHandlers } from "./mountHandlers";
 
@@ -9,8 +7,7 @@ export function makeServer(configs: MinimoonServerProps) {
   console.log(`\x1b[33m server running in port ${configs.port} \x1b[0m`);
   const __HEADERS__ = configs.headers;
 
-  return http
-    .createServer((req: MinimoonRequestProps, res: MinimoonResponseProps) => {
+  return http.createServer(async(req: IncomingMessage, res:  ServerResponse<IncomingMessage>) => {
       /**
        * Headers definitions
        */
@@ -25,11 +22,16 @@ export function makeServer(configs: MinimoonServerProps) {
       /**
        * Construct handlers
        */
-      mountHandlers({
-        handlers: configs.handlers,
-        request: req,
-        response: res
-      })
+
+      const result = mountHandlers(configs.handlers)(req, res) as any
+      console.log(result.body)
+      res.write(JSON.stringify(result.body))
+
+      // mountHandlers({
+      //   handlers: configs.handlers,
+      //   request: req,
+      //   response: res
+      // })
 
     })
     .listen(configs.port);
