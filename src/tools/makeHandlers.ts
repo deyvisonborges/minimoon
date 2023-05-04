@@ -1,6 +1,6 @@
-import { MinimoonHandlerProps } from "../interfaces/HandlerProps";
+import { HandlerProps } from "../interfaces/HandlerProps";
 
-export function makeHandlers(handlers: MinimoonHandlerProps[]) {
+export function makeHandlers(handlers: HandlerProps[]) {
   return handlers;
 }
 

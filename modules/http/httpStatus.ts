@@ -1,13 +1,6 @@
-import { HttpStatusProps } from "../interfaces/HttpStatusProps";
+import { HttpStatusProps } from "./HttpStatusProps";
 
-const HttpStatus: Record<
-  string,
-  {
-    statusCode: number;
-    message: HttpStatusProps;
-    description: string;
-  }
-> = {
+export const HttpStatus = {
   // 2xx Successful
   OK: {
     statusCode: 200,
@@ -94,5 +87,3 @@ const HttpStatus: Record<
     description: ''
   }
 };
-
-export { HttpStatus }

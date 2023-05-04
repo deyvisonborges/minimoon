@@ -1,4 +1,4 @@
-import { Minimoon } from './dist'
+import { Minimoon } from './dist/src'
 
 const router = Minimoon.makeHandlers(
   [
@@ -8,6 +8,15 @@ const router = Minimoon.makeHandlers(
       handler: () => {
         return 'ola mundo'
       }
+    },
+    {
+      path: '/json',
+      method: 'GET',
+      handler: () => {
+        return {
+          message: 'ola mundo'
+        }
+      }
     }
   ]
 );
@@ -15,7 +24,7 @@ const router = Minimoon.makeHandlers(
 (() => {
   try {
     Minimoon.makeServer({
-      port: 4000, handlers: router, statusCode: 200,
+      port: 4000, handlers: router,
       headers: {}
     });
   } catch (err) {

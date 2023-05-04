@@ -1,4 +1,4 @@
-import url from "url";
+<!-- import url from "url";
 import { MinimoonHandlerProps } from "../interfaces/HandlerProps";
 import { IncomingMessage, ServerResponse } from "http";
 import { MIME_TYPES } from "../constants/mimeTypes";
@@ -70,4 +70,4 @@ export function mountHandlers(handlers: MinimoonHandlerProps[]) {
 
     res.end()
   }
-}
+} -->

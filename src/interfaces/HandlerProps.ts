@@ -2,12 +2,17 @@ import { ReadStream } from "fs";
 import { MinimoonRequestProps } from "./RequestProps";
 import { MinimoonResponseProps } from "./ResponseProps";
 
-export type MinimoonHandlerProps = {
+import { HttpMethodProps } from "../../modules/http/HttpMethodProps";
+
+export type HandlerProps = {
   path: string;
-  method: "GET" | "POST" | "PATCH" | "UPDATE" | "DELETE";
+  method: HttpMethodProps;
   handler: (
     req: MinimoonRequestProps,
     res: MinimoonResponseProps
   ) => string | object | ReadStream;
   params?: string[];
+  security?: {
+    enableDefaultFilters?: true;
+  };
 };
